@@ -168,10 +168,12 @@ if __name__ == '__main__':
                 fgdmodel = np.zeros((1,65),np.float64)
                 cv2.grabCut(img2,mask,rect,bgdmodel,fgdmodel,1,cv2.GC_INIT_WITH_RECT)
                 rect_or_mask = 1
+                cv2.imwrite('messimask.png',mask)
             elif rect_or_mask == 1:         # grabcut with mask
                 bgdmodel = np.zeros((1,65),np.float64)
                 fgdmodel = np.zeros((1,65),np.float64)
                 cv2.grabCut(img2,mask,rect,bgdmodel,fgdmodel,1,cv2.GC_INIT_WITH_MASK)
+                cv2.imwrite('messimask.png',mask)
 
         mask2 = np.where((mask==1) + (mask==3),255,0).astype('uint8')
         output = cv2.bitwise_and(img2,img2,mask=mask2)
